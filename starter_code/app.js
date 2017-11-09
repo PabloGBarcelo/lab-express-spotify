@@ -33,7 +33,6 @@ spotifyApi.clientCredentialsGrant()
 
 app.get('/', (request, response, next) => {
     response.render('index');
-    next();
   });
 
 app.get('/artists', (request, response, next) => {
@@ -42,10 +41,10 @@ app.get('/artists', (request, response, next) => {
     artistsArray = data.body.artists.items;
     console.log(artistsArray[0].images[0].url);
     response.render('artists',{artists: artistsArray});
-    next();
   }, function(err) {
     console.error(err);
   });
+  next();
   });
 app.get('/artists/:id', (request, response, next) => {
   spotifyApi.getArtistAlbums(request.params.id)
